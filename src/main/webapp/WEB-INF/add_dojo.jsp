@@ -26,6 +26,7 @@
 				<button class="btn btn-success">Submit</button>
 			</form:form>
 			</p>
+		<a href="http://localhost:8080/ninjas/add">Add Ninja</a>
 	</div>
 
 </body>

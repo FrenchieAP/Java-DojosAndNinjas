@@ -11,7 +11,6 @@ public class DojoService {
 	
 	// IMPORT REPOSITORY
 	@Autowired
-	static
 	DojoRepo dojoRepo;
 
 	
@@ -21,7 +20,7 @@ public class DojoService {
 	}
 	
 	// GET ALL USERS
-	public static List<Dojo> getAllDojos(){
+	public List<Dojo> getAllDojos(){
 		return dojoRepo.findAll();
 	}
 	

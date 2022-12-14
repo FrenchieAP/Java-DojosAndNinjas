@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.antoine.dojos_and_ninjas.models.Dojo;
 import com.antoine.dojos_and_ninjas.services.DojoService;
+import com.antoine.dojos_and_ninjas.services.NinjaService;
+import com.antoine.dojos_and_ninjas.models.Ninja;
 
 
 
@@ -22,11 +24,28 @@ public class DojoController {
 	// IMPORT OUR SERVICE / DEPENDENCY INJECTION
 	@Autowired
 	DojoService dojoServ;
+	@Autowired 
+	NinjaService ninjaServ;
+	
+	@GetMapping("/")
+	public String index(
+		Model model, @ModelAttribute("ninjaObj") Ninja emptyNinjaObj
+	) {
+
+		List<Ninja> allNinjasFromDB = ninjaServ.getAllNinjas();
+		
+
+		model.addAttribute("allNinjas", allNinjasFromDB);
+		
+		// RENDER THE JSP
+		return "index.jsp";
+	}
+	
 	
 	// ------------------ DATA BINDING(CREATE) ------------------------ //
 	// READ ALL
-	@GetMapping("/")
-	public String index(
+	@GetMapping("/dojos")
+	public String dojos(
 		Model model, @ModelAttribute("dojoObj") Dojo emptyDojoObj
 	) {
 

@@ -27,21 +27,24 @@ public class NinjaController {
 	// IMPORT OUR SERVICE / DEPENDENCY INJECTION
 	@Autowired
 	NinjaService ninjaServ;
+	@Autowired
+	DojoService dojoServ;
 	
 	// ------------------ DATA BINDING(CREATE) ------------------------ //
 	// READ ALL
-	@GetMapping("/")
+	@GetMapping("/ninjas/add")
 	public String index(
 		Model model, @ModelAttribute("ninjaObj") Ninja emptyNinjaObj
 	) {
 
-		List<Dojo> allDojosFromDB = DojoService.getAllDojos();
+		List<Dojo> allDojosFromDB = dojoServ.getAllDojos();
 		
 
 		model.addAttribute("allDojos", allDojosFromDB);
+		model.addAttribute("ninjaObj", emptyNinjaObj);
 		
 		// RENDER THE JSP
-		return "add_dojo.jsp";
+		return "add_ninja.jsp";
 	}
 	
 	@PostMapping("/ninjas/new")
